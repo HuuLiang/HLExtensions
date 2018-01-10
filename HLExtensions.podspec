@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source_files = 'HLExtensions/Classes/**/*'
 #  s.resource_bundles = { 'HLExtensions' => ['HLExtensions/Assets/*.png'] }
   s.public_header_files = 'HLExtensions/Classes/core/**/*.h'
-  s.dependency 'MJRefresh'
+  s.dependency 'Aspects', '~> 1.4.1'
 
   s.subspec 'Refresh' do |refresh|
     refresh.source_files = 'HLExtensions/Classes/Refresh/**/*'

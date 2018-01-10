@@ -1,22 +1,41 @@
 {
   "name": "HLExtensions",
   "version": "0.1.0",
-  "summary": "A short description of HLExtensions.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/757437150@qq.com/HLExtensions",
+  "summary": "Include common tools",
+  "description": "HLExtensions use for other HuLiang's podspec，please indicate source when use!",
+  "homepage": "https://github.com/HuuLiang/HLExtensions",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "757437150@qq.com": "757437150@qq.com"
+    "HuLiang": "Lingola@qq.com"
   },
   "source": {
-    "git": "https://github.com/757437150@qq.com/HLExtensions.git",
+    "git": "https://github.com/HuuLiang/HLExtensions.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "HLExtensions/Classes/**/*"
+  "requires_arc": true,
+  "source_files": "HLExtensions/Classes/**/*",
+  "public_header_files": "HLExtensions/Classes/core/**/*.h",
+  "dependencies": {
+    "Aspects": [
+      "~> 1.4.1"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Refresh",
+      "source_files": "HLExtensions/Classes/Refresh/**/*",
+      "public_header_files": "HLExtensions/Classes/Refresh/**/*.h",
+      "dependencies": {
+        "MJRefresh": [
+
+        ]
+      }
+    }
+  ]
 }

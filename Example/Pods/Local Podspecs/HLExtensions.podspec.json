@@ -1,6 +1,6 @@
 {
   "name": "HLExtensions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "Include common tools",
   "description": "HLExtensions use for other HuLiang's podspec，please indicate source when use!",
   "homepage": "https://github.com/HuuLiang/HLExtensions",
@@ -13,14 +13,14 @@
   },
   "source": {
     "git": "https://github.com/HuuLiang/HLExtensions.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "HLExtensions/Classes/**/*",
-  "public_header_files": "HLExtensions/Classes/core/**/*.h",
+  "source_files": "HLExtensions/Classes/Core/**/*",
+  "public_header_files": "HLExtensions/Classes/Core/**/*.h",
   "dependencies": {
     "Aspects": [
       "~> 1.4.1"

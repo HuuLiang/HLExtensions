@@ -1,0 +1,16 @@
+PODS:
+  - HLExtensions (0.1.0)
+
+DEPENDENCIES:
+  - HLExtensions (from `../`)
+
+EXTERNAL SOURCES:
+  HLExtensions:
+    :path: ../
+
+SPEC CHECKSUMS:
+  HLExtensions: 20e6cba9570d5218eb7eecc1fd0556f6020668cd
+
+PODFILE CHECKSUM: d522c47b9f79616e7322de54c421de0172dc77db
+
+COCOAPODS: 1.3.1

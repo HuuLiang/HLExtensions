@@ -2,10 +2,5 @@ use_frameworks!
 
 target 'HLExtensions_Example' do
   pod 'HLExtensions', :path => '../'
-
-  target 'HLExtensions_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  
 end

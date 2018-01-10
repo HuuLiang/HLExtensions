@@ -9,7 +9,7 @@
 #import "HLViewController.h"
 
 @interface HLViewController ()
-
+@property (nonatomic) UILabel *titleLabel;
 @end
 
 @implementation HLViewController
@@ -18,6 +18,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor greenColor];
+    
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 300, 200, 22)];
+    _titleLabel.text = @"HLExtensions";
+    _titleLabel.font = [UIFont systemFontOfSize:20];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_titleLabel];
 }
 
 - (void)didReceiveMemoryWarning

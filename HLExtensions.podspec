@@ -1,42 +1,28 @@
-#
-# Be sure to run `pod lib lint HLExtensions.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'HLExtensions'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of HLExtensions.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.summary          = 'Include common tools'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                      HLExtensions use for other HuLiang's podspec，please indicate source when use!
                        DESC
 
-  s.homepage         = 'https://github.com/757437150@qq.com/HLExtensions'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/HuuLiang/HLExtensions'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '757437150@qq.com' => '757437150@qq.com' }
-  s.source           = { :git => 'https://github.com/757437150@qq.com/HLExtensions.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  s.author           = { 'HuLiang' => 'Lingola@qq.com' }
+  s.source           = { :git => 'https://github.com/HuuLiang/HLExtensions.git', :tag => '0.1.0' }
   s.ios.deployment_target = '8.0'
+  s.requires_arc = true
 
   s.source_files = 'HLExtensions/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'HLExtensions' => ['HLExtensions/Assets/*.png']
-  # }
+  s.resource_bundles = { 'HLExtensions' => ['HLExtensions/Assets/*.png'] }
+  s.public_header_files = 'HLExtensions/Classes/core/**/*.h'
+  s.dependency 'MJRefresh'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.subspec 'Refresh' do |refresh|
+    refresh.source_files = 'HLExtensions/Classes/Refresh/**/*'
+    refresh.public_header_files = 'HLExtensions/Classes/Refresh/**/*.h'
+    refresh.dependency 'MJRefresh'
+  end
+
 end

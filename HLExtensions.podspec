@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/HuuLiang/HLExtensions'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'HuLiang' => 'Lingola@qq.com' }
-  s.source           = { :git => 'https://github.com/HuuLiang/HLExtensions.git', :tag => "v#{s.version}" }
+  s.source           = { :git => 'https://github.com/HuuLiang/HLExtensions.git', :tag => "0.1.2" }
   s.ios.deployment_target = '8.0'
 
   # s.default_subspec = 'Core'

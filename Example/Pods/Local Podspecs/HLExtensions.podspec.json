@@ -1,6 +1,6 @@
 {
   "name": "HLExtensions",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "summary": "Include common tools",
   "description": "HLExtensions use for other HuLiang's podspec，please indicate source when use!",
   "homepage": "https://github.com/HuuLiang/HLExtensions",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/HuuLiang/HLExtensions.git",
-    "tag": "0.1.3"
+    "tag": "0.1.4"
   },
   "platforms": {
     "ios": "8.0"
@@ -21,8 +21,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "HLExtensions/Core/**/*",
-      "public_header_files": "HLExtensions/Core/**/*.h",
+      "source_files": "HLExtensions/Core/**/*.{h,m}",
       "dependencies": {
         "Aspects": [
           "~> 1.4.1"
@@ -31,8 +30,7 @@
     },
     {
       "name": "Refresh",
-      "source_files": "HLExtensions/Refresh/**/*",
-      "public_header_files": "HLExtensions/Refresh/**/*.h",
+      "source_files": "HLExtensions/Refresh/*.{h,m}",
       "dependencies": {
         "MJRefresh": [
 

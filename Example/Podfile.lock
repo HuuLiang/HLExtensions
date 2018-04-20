@@ -1,14 +1,14 @@
 PODS:
   - Aspects (1.4.1)
-  - HLExtensions (0.1.4):
-    - HLExtensions/Core (= 0.1.4)
-    - HLExtensions/Refresh (= 0.1.4)
-  - HLExtensions/Core (0.1.4):
+  - HLExtensions (0.1.5):
+    - HLExtensions/Core (= 0.1.5)
+    - HLExtensions/Refresh (= 0.1.5)
+  - HLExtensions/Core (0.1.5):
     - Aspects (~> 1.4.1)
-  - HLExtensions/Refresh (0.1.4):
+  - HLExtensions/Refresh (0.1.5):
     - HLExtensions/Core
     - MJRefresh
-  - MJRefresh (3.1.15.1)
+  - MJRefresh (3.1.15.3)
 
 DEPENDENCIES:
   - HLExtensions (from `../`)
@@ -19,8 +19,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
-  HLExtensions: 7dd480ae8efbd8729972f3cb09b57749cd45a167
-  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
+  HLExtensions: 06e0444662ad676f1703c5acc562485bba989080
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
 
 PODFILE CHECKSUM: 9b2fc819da5c45d187f2810874e061d2cb056612
 

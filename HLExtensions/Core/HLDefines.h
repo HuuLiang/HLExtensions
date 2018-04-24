@@ -10,13 +10,13 @@
 
 #import "RACEXTScope.h"
 #import "NSDate+Utilities.h"
-#import "NSDictionary+Description.h"
-#import "NSArray+Description.h"
+#import "NSDictionary+extend.h"
+#import "NSArray+extend.h"
 
 #ifdef  DEBUG
-#define HLLog(fmt,...) {printf("%s\n", [NSString stringWithFormat:@"%@ - %@", [NSDate date].standardString,  [NSString stringWithFormat:fmt, ##__VA_ARGS__]].UTF8String);}
+#define HLog(fmt,...) {printf("%s\n", [NSString stringWithFormat:@"%@ - %@", [NSDate date].standardString,  [NSString stringWithFormat:fmt, ##__VA_ARGS__]].UTF8String);}
 #else
-#define HLLog(...)
+#define HLog(...)
 #endif
 
 #define HLDefineLazyPropertyInitialization(propertyType, propertyName) \

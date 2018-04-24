@@ -7,6 +7,7 @@
 //
 
 #import "HLViewController.h"
+#import <HLExtensions/HLDefines.h>
 
 @interface HLViewController ()
 @property (nonatomic) UILabel *titleLabel;

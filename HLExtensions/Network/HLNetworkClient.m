@@ -9,14 +9,19 @@
 #import "AFNetworking.h"
 #import "NSString+extend.h"
 
+@import CoreTelephony;
+
 NSString *const kHLNetworkClientErrorDomain = @"com.hlextensions.errordomian.httpclient";
 
 @interface HLNetworkClient ()
 @property (nonatomic,retain) AFHTTPSessionManager *sessionManager;
-@property (nonatomic,retain) NSString *password;
+
+@property (nonatomic,retain,readonly) CTTelephonyNetworkInfo *networkInfo;
 @end
 
+
 @implementation HLNetworkClient
+@synthesize networkInfo = _networkInfo;
 
 + (instancetype)sharedClient {
     static HLNetworkClient *_sharedClient;
@@ -26,6 +31,57 @@ NSString *const kHLNetworkClientErrorDomain = @"com.hlextensions.errordomian.htt
     });
     return _sharedClient;
 }
+
+- (CTTelephonyNetworkInfo *)networkInfo {
+    if (_networkInfo) {
+        return _networkInfo;
+    }
+    
+    _networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    return _networkInfo;
+}
+
+- (void)startMonitoring {
+    @weakify(self);
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        @strongify(self);
+        BOOL reachable = NO;
+        if (status == AFNetworkReachabilityStatusReachableViaWWAN
+            || status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            reachable = YES;
+        }
+        HLSafelyCallBlock(self.reachabilityChangedAction, reachable);
+    }];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+}
+
+- (HLNetworkStatus)networkStatus {
+    AFNetworkReachabilityStatus status = [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+        return HLNetworkStatusNotReachable;
+    } else if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+        return HLNetworkStatusWiFi;
+    } else if (status == AFNetworkReachabilityStatusReachableViaWWAN) {
+        NSString *radioAccess = self.networkInfo.currentRadioAccessTechnology;
+        if ([radioAccess isEqualToString:CTRadioAccessTechnologyGPRS]
+            || [radioAccess isEqualToString:CTRadioAccessTechnologyEdge]
+            || [radioAccess isEqualToString:CTRadioAccessTechnologyCDMA1x]) {
+            return HLNetworkStatus2G;
+        } else if ([radioAccess isEqualToString:CTRadioAccessTechnologyWCDMA]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyHSDPA]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyHSUPA]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyCDMAEVDORev0]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyCDMAEVDORevA]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyCDMAEVDORevB]
+                   || [radioAccess isEqualToString:CTRadioAccessTechnologyeHRPD]) {
+            return HLNetworkStatus3G;
+        } else if ([radioAccess isEqualToString:CTRadioAccessTechnologyLTE]) {
+            return HLNetworkStatus4G;
+        }
+    }
+    return HLNetworkStatusUnknown;
+}
+
 
 - (AFHTTPSessionManager *)sessionManager {
     if (_sessionManager) {

@@ -79,7 +79,7 @@ HLSafelyCallBlock(view##StrongSelf.action, self); \
 
 
 typedef void (^HLAction)(id obj);
-typedef void (^HLCompletionHandler)(BOOL success, id obj);
+typedef void (^HLCompletionHandler)(id obj,NSError * error );
 
 
 #endif /* HLDefines_h */

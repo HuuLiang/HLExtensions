@@ -12,6 +12,7 @@
 #import "NSDate+Utilities.h"
 #import "NSDictionary+extend.h"
 #import "NSArray+extend.h"
+#import "UIColor+hexColor.h"
 
 #ifdef  DEBUG
 #define HLog(fmt,...) {printf("%s\n", [NSString stringWithFormat:@"%@ - %@", [NSDate date].standardString,  [NSString stringWithFormat:fmt, ##__VA_ARGS__]].UTF8String);}
@@ -70,6 +71,12 @@ HLSafelyCallBlock(view##StrongSelf.action, self); \
 
 #define kScreenHeight     [ [ UIScreen mainScreen ] bounds ].size.height
 #define kScreenWidth      [ [ UIScreen mainScreen ] bounds ].size.width
+#define kWidth(width)                     floorf(kScreenWidth  * width  / 375.)
+#define kColor(hexString)                 [UIColor colorWithHexString:[NSString stringWithFormat:@"%@",hexString]]
+
+#define kFontWithName(fontName,fontSize) [UIFont fontWithName:fontName size:kWidth(fontSize)]
+#define kFont(font)                      kFontWithName(@"PingFangSC-Regular",font)
+
 
 typedef void (^HLAction)(id obj);
 typedef void (^HLCompletionHandler)(BOOL success, id obj);

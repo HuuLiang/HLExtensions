@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'HLExtensions'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = 'Include common tools'
 
   s.description      = <<-DESC
@@ -16,7 +16,6 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |core|
     core.source_files           = 'HLExtensions/Core/**/*.{h,m}'
     core.dependency 'Aspects', '~> 1.4.1'
-    
   end
 
   s.subspec 'Refresh' do |refresh|

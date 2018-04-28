@@ -7,8 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface UIColor (hexColor)
 
-+(instancetype)colorWithHexString:(NSString *)hexStr;
++ (instancetype)colorWithHexString:(NSString *)hexStr;
 
 @end

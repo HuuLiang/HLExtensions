@@ -30,6 +30,7 @@
 #import "DBMigration.h"
 #import "DBPersistence.h"
 #import "DBTableVersion.h"
+#import "HLAlertManager.h"
 #import "HLHudManager.h"
 #import "HLNetworkClient.h"
 #import "UIScrollView+HLRefresh.h"

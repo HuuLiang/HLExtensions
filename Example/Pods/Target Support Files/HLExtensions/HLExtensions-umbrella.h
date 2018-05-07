@@ -20,6 +20,7 @@
 #import "RACEXTScope.h"
 #import "RACmetamacros.h"
 #import "UIDevice+Model.h"
+#import "UIViewController+showOrHide.h"
 #import "HLDefines.h"
 #import "UIButton+imageSpacing.h"
 #import "UIColor+hexColor.h"

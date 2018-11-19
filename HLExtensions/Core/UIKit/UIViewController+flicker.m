@@ -1,16 +1,15 @@
 //
-//  UIViewController+showOrHide.m
-//  Coupling
+//  UIViewController+flicker.m
+//  HLExtensions
 //
-//  Created by Liang on 2018/5/4.
-//  Copyright © 2018年 Liang. All rights reserved.
+//  Created by Liang on 2018/11/19.
 //
 
-#import "UIViewController+showOrHide.h"
+#import "UIViewController+flicker.h"
 #import "HLDefines.h"
-#import <BlocksKit/BlocksKit.h>
+#import <BlocksKit/NSArray+BlocksKit.h>
 
-@implementation UIViewController (showOrHide)
+@implementation UIViewController (flicker)
 
 - (void)showInViewController:(UIViewController *)viewController {
     BOOL anyView = [viewController.childViewControllers bk_any:^BOOL(id obj) {
@@ -29,10 +28,10 @@
     }
     
     [viewController addChildViewController:self];
-    //    self.view.frame = viewController.view.bounds;
+//    self.view.frame = viewController.view.bounds;
     CGRect superVCBounds = viewController.view.bounds;
     self.view.frame = CGRectMake(superVCBounds.origin.x, superVCBounds.origin.y, superVCBounds.size.width, superVCBounds.size.height+49);
-    self.view.alpha = 0;
+    self.view.alpha = 0.01;
     self.view.backgroundColor = [kColor(@"#000000") colorWithAlphaComponent:1];
     [viewController.view addSubview:self.view];
     [self didMoveToParentViewController:viewController];
@@ -54,5 +53,6 @@
         [self removeFromParentViewController];
     }];
 }
+
 
 @end

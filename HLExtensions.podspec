@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'HLExtensions'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Include common tools'
 
   s.description      = <<-DESC
@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |core|
     core.source_files           = 'HLExtensions/Core/**/*.{h,m}'
     core.dependency 'Aspects', '~> 1.4.1'
+    core.dependency 'BlocksKit', '~> 2.2.5'
   end
 
   s.subspec 'Refresh' do |refresh|
@@ -29,19 +30,18 @@ Pod::Spec.new do |s|
     hud.dependency 'MBProgressHUD', '~> 1.1.0'
     hud.dependency 'SVProgressHUD', '~> 2.2.5'
     hud.dependency 'SIAlertView', '~> 1.3'
-    hud.dependency 'BlocksKit', '~> 2.2.5'
     hud.dependency 'HLExtensions/Core'
   end
 
   s.subspec 'Network' do |net|
     net.source_files        = 'HLExtensions/Network/*.{h,m}'
-    net.dependency 'AFNetworking', '~> 3.1.0'
+    net.dependency 'AFNetworking', '~> 3.2.1'
     net.dependency 'HLExtensions/Core'
   end
 
   s.subspec 'Data' do |data|
     data.source_files        = 'HLExtensions/Data/*.{h,m}'
-    data.dependency 'FMDB', '~> 2.7.2'
+    data.dependency 'FMDB', '~> 2.7.5'
     data.dependency 'HLExtensions/Core'
   end
 

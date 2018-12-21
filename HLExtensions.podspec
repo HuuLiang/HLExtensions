@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'HLExtensions'
-  s.version          = '0.2.2'
+  s.version          = '0.2.3'
   s.summary          = 'Include common tools'
 
   s.description      = <<-DESC
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.subspec 'Core' do |core|
-    core.source_files           = 'HLExtensions/Core/HLDefines.h', 'HLExtensions/Core/Foundation/**/*.{h,m}','HLExtensions/Core/UIKit/**/*.{h,m}' #'HLExtensions/Core/**/*.{h,m}'
+    core.source_files           = 'HLExtensions/Core/**/*.{h,m}'
     core.dependency 'Aspects', '~> 1.4.1'
     core.dependency 'BlocksKit', '~> 2.2.5'
   end

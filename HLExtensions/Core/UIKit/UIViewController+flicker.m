@@ -12,6 +12,14 @@
 @implementation UIViewController (flicker)
 
 - (void)showInViewController:(UIViewController *)viewController {
+    [self showInViewController:viewController inRect:viewController.view.bounds backgroundColor:[kColor(@"#000000") colorWithAlphaComponent:1]];
+}
+
+- (void)showInViewController:(UIViewController *)viewController inRect:(CGRect)rect backgroundColor:(UIColor *)backgroundColor {
+    [self showInViewController:viewController inRect:rect backgroundColor:backgroundColor animationBlock:nil];
+}
+
+- (void)showInViewController:(UIViewController *)viewController inRect:(CGRect)rect backgroundColor:(UIColor *)backgroundColor animationBlock:(void (^)(void))showAnimationBlock {
     BOOL anyView = [viewController.childViewControllers bk_any:^BOOL(id obj) {
         if ([obj isKindOfClass:[self class]]) {
             return YES;
@@ -28,30 +36,44 @@
     }
     
     [viewController addChildViewController:self];
-//    self.view.frame = viewController.view.bounds;
-    CGRect superVCBounds = viewController.view.bounds;
-    self.view.frame = CGRectMake(superVCBounds.origin.x, superVCBounds.origin.y, superVCBounds.size.width, superVCBounds.size.height+49);
-    self.view.alpha = 0.01;
-    self.view.backgroundColor = [kColor(@"#000000") colorWithAlphaComponent:1];
+    self.view.frame = rect;
+    if (!showAnimationBlock) {
+        self.view.alpha = 0.01;
+    }
+
+    self.view.backgroundColor = backgroundColor;
     [viewController.view addSubview:self.view];
     [self didMoveToParentViewController:viewController];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        self.view.alpha = 1;
-    }];
+    if (!showAnimationBlock) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.alpha = 1;
+        }];
+    } else {
+        HLSafelyCallBlock(showAnimationBlock);
+    }
 }
 
 - (void)hide {
+    [self hideWithAnimationBlock:nil];
+}
+
+- (void)hideWithAnimationBlock:(void (^)(void))hideAnimationBlock {
     if (!self.view.superview) {
         return ;
     }
-    [UIView animateWithDuration:0.25 animations:^{
-        self.view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self willMoveToParentViewController:nil];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
+    
+    if (!hideAnimationBlock) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self willMoveToParentViewController:nil];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+        }];
+    } else {
+        HLSafelyCallBlock(hideAnimationBlock);
+    }
 }
 
 

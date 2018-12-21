@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "HLDefines.h"
 #import "NSArray+extend.h"
 #import "NSBundle+BundleInfo.h"
 #import "NSDate+Utilities.h"
@@ -21,6 +20,7 @@
 #import "RACEXTScope.h"
 #import "RACmetamacros.h"
 #import "UIDevice+Model.h"
+#import "HLDefines.h"
 #import "UIButton+imageSpacing.h"
 #import "UIColor+hexColor.h"
 #import "UIImage+color.h"

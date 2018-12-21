@@ -1,6 +1,6 @@
 {
   "name": "HLExtensions",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "summary": "Include common tools",
   "description": "HLExtensions use for other HuLiang's podspec，please indicate source when use!",
   "homepage": "https://github.com/HuuLiang/HLExtensions",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/HuuLiang/HLExtensions.git",
-    "tag": "0.2.2"
+    "tag": "0.2.3"
   },
   "platforms": {
     "ios": "8.0"
@@ -21,11 +21,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": [
-        "HLExtensions/Core/HLDefines.h",
-        "HLExtensions/Core/Foundation/**/*.{h,m}",
-        "HLExtensions/Core/UIKit/**/*.{h,m}"
-      ],
+      "source_files": "HLExtensions/Core/**/*.{h,m}",
       "dependencies": {
         "Aspects": [
           "~> 1.4.1"

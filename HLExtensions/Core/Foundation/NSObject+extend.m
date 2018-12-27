@@ -117,6 +117,10 @@ static NSString *const kElementClassSuffix = @"ElementClass";
     }
     
     NSArray *properties = [NSObject propertiesOfClass:[instance class]];
+    if ([self respondsToSelector:@selector(ignoreProperties)] && self.ignoreProperties.count > 0) {
+        properties = [properties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT(SELF in %@)",self.ignoreProperties]];
+    }
+    
     [properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *propertyName = (NSString *)obj;
         

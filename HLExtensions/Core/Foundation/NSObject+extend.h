@@ -12,6 +12,7 @@
 /** Properties */
 + (NSArray *)propertiesOfClass:(Class)cls;
 - (NSArray *)allProperties;
+- (NSArray <NSString *> *)ignoreProperties;
 
 /** BaseRepresentation */
 + (instancetype)objectFromDictionary:(NSDictionary *)dictionary;

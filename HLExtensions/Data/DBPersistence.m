@@ -116,7 +116,7 @@
             });
         });
     } else {
-        return [self objectsFromPersistence];
+        return [[DBHandler sharedInstance] queryWithClass:[self class] key:key models:models orderByKey:nil desc:NO];
     }
     return nil;
 }

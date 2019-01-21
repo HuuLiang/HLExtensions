@@ -21,6 +21,7 @@
 		6716645BCEF1588EE1FBD0EC /* Pods_HLExtensions_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2C08B8883A59362D8BCB29 /* Pods_HLExtensions_Example.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		EC21C93321F07BD0008A0871 /* HLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC21C93221F07BD0008A0871 /* HLUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,11 +54,13 @@
 		6FEC29D33E5AC277B58505BB /* HLExtensions.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HLExtensions.podspec; path = ../HLExtensions.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D2C08B8883A59362D8BCB29 /* Pods_HLExtensions_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLExtensions_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BD0E3042C3B7045A3746786F /* Pods_HLExtensions_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLExtensions_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7A853C237AB4923924AE57 /* Pods-HLExtensions_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLExtensions_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HLExtensions_Example/Pods-HLExtensions_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E902A00516392750765ED8DD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E9F79B8D0EFAEE38E20F0C19 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		EC21C93121F07BD0008A0871 /* HLUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLUser.h; sourceTree = "<group>"; };
+		EC21C93221F07BD0008A0871 /* HLUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,13 +124,9 @@
 		6003F593195388D20070C39A /* Example for HLExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				EC21C93721F07FC3008A0871 /* TestClasses */,
 				6003F59C195388D20070C39A /* HLAppDelegate.h */,
 				6003F59D195388D20070C39A /* HLAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* HLViewController.h */,
-				6003F5A6195388D20070C39A /* HLViewController.m */,
-				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for HLExtensions";
@@ -137,6 +136,9 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F595195388D20070C39A /* HLExtensions-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -162,6 +164,17 @@
 				CC7A853C237AB4923924AE57 /* Pods-HLExtensions_Example.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC21C93721F07FC3008A0871 /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* HLViewController.h */,
+				6003F5A6195388D20070C39A /* HLViewController.m */,
+				EC21C93121F07BD0008A0871 /* HLUser.h */,
+				EC21C93221F07BD0008A0871 /* HLUser.m */,
+			);
+			path = TestClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +337,7 @@
 			files = (
 				6003F59E195388D20070C39A /* HLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* HLViewController.m in Sources */,
+				EC21C93321F07BD0008A0871 /* HLUser.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

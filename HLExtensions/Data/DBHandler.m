@@ -332,7 +332,7 @@ static DBHandler *dbHandler = nil;
     return deleteRst;
 }
 
-- (NSArray *) queryWithClass: (Class)modelClass key: (NSString *) key value :(NSObject *) value orderByKey:(NSString *)oKey desc:(BOOL)desc
+- (NSArray *)queryWithClass:(Class)modelClass key:(NSString *)key value:(NSObject *)value orderByKey:(NSString *)oKey desc:(BOOL)desc
 {
     NSMutableArray * resultObjArray = [NSMutableArray array];
     NSString * tableName = NSStringFromClass(modelClass);
@@ -389,7 +389,67 @@ static DBHandler *dbHandler = nil;
     return resultObjArray;
 }
 
-- (BOOL) dropModels: (Class)modelClass
+- (NSArray *)queryWithClass:(Class)modelClass key:(NSString *)key models:(NSArray *)models orderByKey:(NSString *)oKey desc:(BOOL)desc {
+    NSMutableArray * resultObjArray = [NSMutableArray array];
+    NSString * tableName = NSStringFromClass(modelClass);
+    
+    NSString* sqlString = @"";
+    
+    // table
+    sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ ",tableName];
+    
+    // condition
+    NSMutableArray *values = [NSMutableArray array];
+    [models enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [values addObject:[obj valueForKey:key]];
+    }];
+    
+    if (key != nil && values != nil && values.count != 0) {
+        NSObject *obj = values.firstObject;
+        NSLog(@"%@",obj);
+        if([obj isKindOfClass:[NSNumber class]]){
+            sqlString = [sqlString stringByAppendingString:[NSString stringWithFormat:@"where %@ ", key]];
+        } else {
+            // object other than nsstring nsnumber is not supported for now
+            return resultObjArray;
+        }
+    }
+    
+//    sqlString = [sqlString stringByAppendingString:[NSString stringWithFormat:@"whereasdfadsf "]];
+
+    sqlString = [sqlString stringByAppendingString:[NSString stringWithFormat:@"in (%@)",[values componentsJoinedByString:@","]]];
+    
+    // sort
+    if (oKey != nil) {
+        sqlString = [sqlString stringByAppendingString:[NSString stringWithFormat:@"order by %@ %@", oKey, desc ? @"DESC" : @"ASC"]];
+    }
+    
+    [otDbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            if (![db open]) {
+                HLog(@"%@",LocalizedStr(@"DB_ERROR"));
+                return ;
+            }
+            FMResultSet* result = [db executeQuery:sqlString];
+            //FMResultSet* result = [db executeQuery:@"SELECT * FROM TZSUser where usrId LIKE 'r817k5d6'"];
+            while ([result next]) {
+                id<NSObject> obj = [self objectFromFMResult:result byClass:modelClass];
+                if (obj != nil) {
+                    [resultObjArray addObject:obj];
+                }
+            }
+        }
+        @catch (NSException *exception) {
+            HLog(@"%@%@",LocalizedStr(@"DB_EXCEPTION"),exception.userInfo.description);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    return resultObjArray;
+}
+
+- (BOOL)dropModels:(Class)modelClass
 {
     NSString *createTableSQL = [NSString stringWithFormat:@"DROP TABLE IF EXISTS %@",NSStringFromClass(modelClass.class)];
     

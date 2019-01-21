@@ -74,7 +74,10 @@
  *
  *  @return 查询到得的数据记录
  */
-- (NSArray *) queryWithClass: (Class)modelClass key: (NSString *) key value :(NSObject *) value orderByKey:(NSString *)oKey desc:(BOOL)desc;
+- (NSArray *)queryWithClass:(Class)modelClass key:(NSString *) key value:(NSObject *)value orderByKey:(NSString *)oKey desc:(BOOL)desc;
+
+/** 根据key对应的values集合批量查询数据 */
+- (NSArray *)queryWithClass:(Class)modelClass key:(NSString *)key models:(NSArray *)models orderByKey:(NSString *)oKey desc:(BOOL)desc;
 
 /**
  *  删除符合条件的数据
@@ -84,7 +87,7 @@
  *
  *  @return 删除结果
  */
-- (BOOL) deleteModels: (NSArray *)arrOfmodel withPrimaryKey: (NSString *)key;
+- (BOOL)deleteModels:(NSArray *)arrOfmodel withPrimaryKey:(NSString *)key;
 
 /**
  *  删除该类型所有数据
@@ -93,6 +96,6 @@
  *
  *  @return 删除结果
  */
-- (BOOL) dropModels: (Class)modelClass;
+- (BOOL)dropModels:(Class)modelClass;
 
 @end

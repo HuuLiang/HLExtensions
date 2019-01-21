@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, DBPersistenceOperation) {
 @interface DBPersistence : NSObject <DBPersistence,DBPersistentDelegate>
 
 + (NSArray *)objectsFromPersistenceAsync:(void (^)(NSArray *objects))asyncBlock;
++ (NSArray *)objectsFromPersistenceWithKey:(NSString *)key models:(NSArray *)models async:(void (^)(NSArray *objects))asyncBlock;
 
 + (instancetype)objectFromPersistenceWithPKValue:(id)value async:(void (^)(id obj))asyncBlock;
 

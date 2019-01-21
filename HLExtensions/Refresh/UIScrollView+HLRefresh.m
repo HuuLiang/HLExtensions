@@ -22,7 +22,7 @@ static const void *kHLShowStateAssociatedKey = &kHLShowStateAssociatedKey;
 - (BOOL)HL_isRefreshing {
     if ([self.HL_refreshView isKindOfClass:[MJRefreshComponent class]]) {
         MJRefreshComponent *refresh = (MJRefreshComponent *)self.HL_refreshView;
-        return refresh.state == MJRefreshStateRefreshing;
+        return refresh.refreshing;
     }
     return NO;
 }
@@ -96,7 +96,7 @@ static const void *kHLShowStateAssociatedKey = &kHLShowStateAssociatedKey;
 - (void)HL_addPagingRefreshAutomaticallyHidden:(BOOL)automaticallyHidden WithHandler:(void (^)(void))handler {
     if (!self.mj_footer) {
         MJRefreshAutoNormalFooter *refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:handler];
-        refreshFooter.automaticallyHidden = automaticallyHidden;
+//        refreshFooter.automaticallyHidden = automaticallyHidden;
         refreshFooter.stateLabel.textColor = [self HL_refreshTextColor];
         self.mj_footer = refreshFooter;
     }

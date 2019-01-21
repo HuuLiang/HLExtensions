@@ -104,6 +104,23 @@
     return nil;
 }
 
++ (NSArray *)objectsFromPersistenceWithKey:(NSString *)key models:(NSArray *)models async:(void (^)(NSArray *))asyncBlock {
+    if (asyncBlock) {
+        dispatch_async(self.persistenceQueue, ^{
+            NSArray *objects = [[DBHandler sharedInstance] queryWithClass:[self class] key:key models:models orderByKey:nil desc:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                asyncBlock(objects);
+                if (objects && objects.count > 0) {
+                    [self notifyObserversWithOperation:DBPersistenceOperationLoad];
+                }
+            });
+        });
+    } else {
+        return [self objectsFromPersistence];
+    }
+    return nil;
+}
+
 + (instancetype)objectFromPersistenceWithPKValue:(id)value {
     return [[DBHandler sharedInstance] queryWithClass:[self class] key:[[self class] primaryKey] value:value orderByKey:nil desc:NO].firstObject;
 }

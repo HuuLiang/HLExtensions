@@ -6,12 +6,7 @@
 //
 
 #import "UIScrollView+HLRefresh.h"
-
 #import "MJRefresh.h"
-
-static const void *kHLRefreshViewAssociatedKey = &kHLRefreshViewAssociatedKey;
-static const void *kHLShowLastUpdatedTimeAssociatedKey = &kHLShowLastUpdatedTimeAssociatedKey;
-static const void *kHLShowStateAssociatedKey = &kHLShowStateAssociatedKey;
 
 @implementation UIScrollView (HLRefresh)
 
@@ -20,83 +15,47 @@ static const void *kHLShowStateAssociatedKey = &kHLShowStateAssociatedKey;
 }
 
 - (BOOL)HL_isRefreshing {
-    if ([self.HL_refreshView isKindOfClass:[MJRefreshComponent class]]) {
-        MJRefreshComponent *refresh = (MJRefreshComponent *)self.HL_refreshView;
-        return refresh.refreshing;
+    if (self.mj_header || self.mj_footer) {
+        return self.mj_header.isRefreshing || self.mj_footer.isRefreshing;
     }
     return NO;
 }
 
-- (UIView *)HL_refreshView {
-    return objc_getAssociatedObject(self, kHLRefreshViewAssociatedKey);
-}
-
-- (void)setHL_showLastUpdatedTime:(BOOL)HL_showLastUpdatedTime {
-    objc_setAssociatedObject(self, kHLShowLastUpdatedTimeAssociatedKey, @(HL_showLastUpdatedTime), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    
-    if ([self.mj_header isKindOfClass:[MJRefreshStateHeader class]]) {
-        MJRefreshStateHeader *header = (MJRefreshStateHeader *)self.mj_header;
-        header.lastUpdatedTimeLabel.hidden = !HL_showLastUpdatedTime;
+- (void)HL_setRefreshViewHidden:(BOOL)hide {
+    if (self.mj_header) {
+        [self.mj_header setHidden:hide];
     }
-}
-
-- (BOOL)HL_showLastUpdatedTime {
-    NSNumber *value = objc_getAssociatedObject(self, kHLShowLastUpdatedTimeAssociatedKey);
-    return value.boolValue;
-}
-
-- (void)setHL_showStateLabel:(BOOL)HL_showStateLabel {
-    objc_setAssociatedObject(self, kHLShowStateAssociatedKey, @(HL_showStateLabel), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    
-    if ([self.mj_header isKindOfClass:[MJRefreshStateHeader class]]) {
-        MJRefreshStateHeader *header = (MJRefreshStateHeader *)self.mj_header;
-        header.stateLabel.hidden = !HL_showStateLabel;
+    if (self.mj_footer) {
+        self.mj_footer.hidden = hide;
     }
-}
-
-- (BOOL)HL_showStateLabel {
-    NSNumber *value = objc_getAssociatedObject(self, kHLShowStateAssociatedKey);
-    return value.boolValue;
 }
 
 - (void)HL_addPullToRefreshWithHandler:(void (^)(void))handler {
     if (!self.mj_header) {
         MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:handler];
-        //            refreshHeader.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-        refreshHeader.lastUpdatedTimeLabel.textColor = [self HL_refreshTextColor];
         refreshHeader.stateLabel.textColor = [self HL_refreshTextColor];
-        refreshHeader.lastUpdatedTimeLabel.hidden = !self.HL_showLastUpdatedTime;
         self.mj_header = refreshHeader;
-        
-        objc_setAssociatedObject(self, kHLRefreshViewAssociatedKey, refreshHeader, OBJC_ASSOCIATION_ASSIGN);
     }
 }
 
 - (void)HL_triggerPullToRefresh {
-    
-    if ([self.HL_refreshView isKindOfClass:[MJRefreshComponent class]]) {
-        MJRefreshComponent *refresh = (MJRefreshComponent *)self.HL_refreshView;
-        [refresh beginRefreshing];
+    if (self.mj_header) {
+        [self.mj_header beginRefreshing];
     }
 }
 
 - (void)HL_endPullToRefresh {
-    if ([self.HL_refreshView isKindOfClass:[MJRefreshComponent class]]) {
-        MJRefreshComponent *refresh = (MJRefreshComponent *)self.HL_refreshView;
-        [refresh endRefreshing];
+    if (self.mj_header && self.mj_header.isRefreshing) {
+        [self.mj_header endRefreshing];
     }
-    
-    [self.mj_footer resetNoMoreData];
+    if (self.mj_footer && self.mj_footer.isRefreshing) {
+        [self.mj_footer endRefreshing];
+    }
 }
 
 - (void)HL_addPagingRefreshWithHandler:(void (^)(void))handler {
-    [self HL_addPagingRefreshAutomaticallyHidden:NO WithHandler:handler];
-}
-
-- (void)HL_addPagingRefreshAutomaticallyHidden:(BOOL)automaticallyHidden WithHandler:(void (^)(void))handler {
     if (!self.mj_footer) {
         MJRefreshAutoNormalFooter *refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:handler];
-//        refreshFooter.automaticallyHidden = automaticallyHidden;
         refreshFooter.stateLabel.textColor = [self HL_refreshTextColor];
         self.mj_footer = refreshFooter;
     }
@@ -104,20 +63,6 @@ static const void *kHLShowStateAssociatedKey = &kHLShowStateAssociatedKey;
 
 - (void)HL_pagingRefreshNoMoreData {
     [self.mj_footer endRefreshingWithNoMoreData];
-}
-
-- (void)HL_setPagingRefreshText:(NSString *)text {
-    if ([self.mj_footer isKindOfClass:[MJRefreshAutoNormalFooter class]]) {
-        MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)self.mj_footer;
-        [footer setTitle:text forState:MJRefreshStateIdle];
-    }
-}
-
-- (void)HL_setPagingNoMoreDataText:(NSString *)text {
-    if ([self.mj_footer isKindOfClass:[MJRefreshAutoNormalFooter class]]) {
-        MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)self.mj_footer;
-        [footer setTitle:text forState:MJRefreshStateNoMoreData];
-    }
 }
 
 @end

@@ -6,7 +6,7 @@
 //
 
 #import "HLAlertManager.h"
-#import <SIAlertView/SIAlertView.h>
+#import <SCLAlertView_Objective_C/SCLAlertView.h>
 
 @implementation HLAlertManager
 
@@ -15,24 +15,26 @@ HLSynthesizeSingletonMethod(sharedManager)
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[SIAlertView appearance] setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
-        [[SIAlertView appearance] setTransitionStyle:SIAlertViewTransitionStyleFade];
+        
     }
     return self;
 }
 
 - (void)alertWithTitle:(NSString *)title message:(NSString *)message {
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:title andMessage:message];
-    [alert addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDestructive handler:nil];
-    [alert show];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    alert.showAnimationType = SCLAlertViewShowAnimationFadeIn;
+    alert.hideAnimationType = SCLAlertViewShowAnimationSimplyAppear;
+    [alert showInfo:title subTitle:message closeButtonTitle:@"确定" duration:3];
 }
 
 - (void)alertWithTitle:(NSString *)title message:(NSString *)message action:(HLAction)action {
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:title andMessage:message];
-    [alert addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    alert.showAnimationType = SCLAlertViewShowAnimationFadeIn;
+    alert.hideAnimationType = SCLAlertViewShowAnimationSimplyAppear;
+    [alert alertIsDismissed:^{
         HLSafelyCallBlock(action, self);
     }];
-    [alert show];
+    [alert showNotice:title subTitle:message closeButtonTitle:@"确定" duration:3];
 }
 
 - (void)alertWithTitle:(NSString *)title
@@ -42,15 +44,18 @@ HLSynthesizeSingletonMethod(sharedManager)
               OKAction:(HLAction)OKAction
           cancelAction:(HLAction)cancelAction
 {
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:title andMessage:message];
-    [alert addButtonWithTitle:cancelButton type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView) {
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    alert.showAnimationType = SCLAlertViewShowAnimationFadeIn;
+    alert.hideAnimationType = SCLAlertViewShowAnimationFadeIn;
+    alert.horizontalButtons = YES;
+    [alert addButton:cancelButton actionBlock:^{
+        [alert hideView];
         HLSafelyCallBlock(cancelAction, self);
     }];
-    [alert addButtonWithTitle:OKButton type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+    [alert addButton:OKButton actionBlock:^{
         HLSafelyCallBlock(OKAction, self);
     }];
-    [alert show];
-    
+    [alert showNotice:title subTitle:message closeButtonTitle:nil duration:3];
 }
 
 

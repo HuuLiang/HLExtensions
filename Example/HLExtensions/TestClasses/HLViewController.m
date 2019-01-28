@@ -12,6 +12,9 @@
 
 #import "HLUser.h"
 
+#import "HLImagePicker.h"
+#import "HLAlertManager.h"
+
 @interface HLViewController ()
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic,strong) UIButton *addBtn;
@@ -32,19 +35,28 @@
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_titleLabel];
     
-//    @weakify(self);
+    @weakify(self);
     [self.addBtn bk_addEventHandler:^(id sender) {
-//        @strongify(self);
-        NSMutableArray *arr = [NSMutableArray array];
-        for (int i = 10; i < 20; i++) {
-            HLUser *user = [HLUser new];
-            user.id = [NSNumber numberWithInt:i];
-            user.name = [NSString stringWithFormat:@"name-%d",i];
-//            user.age = [NSString stringWithFormat:@"%d",i];;
-            user.num = i + 10;
-            [arr addObject:user];
-        }
-        [HLUser saveObjects:arr];
+        @strongify(self);
+//        NSMutableArray *arr = [NSMutableArray array];
+//        for (int i = 10; i < 20; i++) {
+//            HLUser *user = [HLUser new];
+//            user.id = [NSNumber numberWithInt:i];
+//            user.name = [NSString stringWithFormat:@"name-%d",i];
+////            user.age = [NSString stringWithFormat:@"%d",i];;
+//            user.num = i + 10;
+//            [arr addObject:user];
+//        }
+//        [HLUser saveObjects:arr];
+        [[HLImagePicker picker] getImageInCurrentViewController:self handler:^(UIImage *pickerImage, NSString *keyName) {
+
+        }];
+//        [[HLAlertManager sharedManager] alertWithTitle:@"xcvxcv" message:@"asdfasdfasdfasdf"];
+//        [[HLAlertManager sharedManager] alertWithTitle:@"asdfa" message:@"asdfasdf" OKButton:@"确定" cancelButton:@"取消" OKAction:^(id obj) {
+//
+//        } cancelAction:^(id obj) {
+//
+//        }];
     } forControlEvents:UIControlEventTouchUpInside];
     
     [self.queryBtn bk_addEventHandler:^(id sender) {

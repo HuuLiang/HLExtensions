@@ -33,6 +33,7 @@
 #import "DBTableVersion.h"
 #import "HLAlertManager.h"
 #import "HLHudManager.h"
+#import "HLImagePicker.h"
 #import "HLNetworkClient.h"
 #import "UIScrollView+HLRefresh.h"
 

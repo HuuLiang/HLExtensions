@@ -8,7 +8,6 @@
 #import "HLHudManager.h"
 #import "SVProgressHUD.h"
 #import "MBProgressHUD.h"
-#import "SIAlertView.h"
 #import "BlocksKit.h"
 
 static const SVProgressHUDMaskType kDefaultMaskType = SVProgressHUDMaskTypeBlack;
@@ -27,7 +26,7 @@ HLSynthesizeSingletonMethod(sharedManager)
         if (@available(iOS 8.0, *)) {
             [SVProgressHUD setDefaultMaskType:kDefaultMaskType];
             [SVProgressHUD setMinimumSize:CGSizeMake(kScreenWidth/4, kScreenWidth/4)];
-            [SVProgressHUD setMinimumDismissTimeInterval:3];
+            [SVProgressHUD setMinimumDismissTimeInterval:2];
         }
     }
     return self;

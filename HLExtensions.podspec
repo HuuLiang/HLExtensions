@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'HLExtensions'
-    s.version          = '0.2.8'
+    s.version          = '0.3.0'
     s.summary          = 'Include common tools'
     
     s.description      = <<-DESC
@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
         core.source_files           = 'HLExtensions/Core/**/*.{h,m}'
         core.dependency 'Aspects', '~> 1.4.1'
         core.dependency 'BlocksKit', '~> 2.2.5'
+        core.dependency 'OpenSSL-XM'
     end
     
     s.subspec 'Refresh' do |refresh|

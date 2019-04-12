@@ -33,35 +33,37 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - HLExtensions (0.2.8):
-    - HLExtensions/Core (= 0.2.8)
-    - HLExtensions/Data (= 0.2.8)
-    - HLExtensions/Hud (= 0.2.8)
-    - HLExtensions/ImgPicker (= 0.2.8)
-    - HLExtensions/Network (= 0.2.8)
-    - HLExtensions/Refresh (= 0.2.8)
-  - HLExtensions/Core (0.2.8):
+  - HLExtensions (0.3.0):
+    - HLExtensions/Core (= 0.3.0)
+    - HLExtensions/Data (= 0.3.0)
+    - HLExtensions/Hud (= 0.3.0)
+    - HLExtensions/ImgPicker (= 0.3.0)
+    - HLExtensions/Network (= 0.3.0)
+    - HLExtensions/Refresh (= 0.3.0)
+  - HLExtensions/Core (0.3.0):
     - Aspects (~> 1.4.1)
     - BlocksKit (~> 2.2.5)
-  - HLExtensions/Data (0.2.8):
+    - OpenSSL-XM
+  - HLExtensions/Data (0.3.0):
     - FMDB (~> 2.7.5)
     - HLExtensions/Core
-  - HLExtensions/Hud (0.2.8):
+  - HLExtensions/Hud (0.3.0):
     - HLExtensions/Core
     - MBProgressHUD (~> 1.1.0)
     - SCLAlertView-Objective-C (~> 1.1.6)
     - SVProgressHUD (~> 2.2.5)
-  - HLExtensions/ImgPicker (0.2.8):
+  - HLExtensions/ImgPicker (0.3.0):
     - HLExtensions/Core
     - HLExtensions/Hud
-  - HLExtensions/Network (0.2.8):
+  - HLExtensions/Network (0.3.0):
     - AFNetworking (~> 3.2.1)
     - HLExtensions/Core
-  - HLExtensions/Refresh (0.2.8):
+  - HLExtensions/Refresh (0.3.0):
     - HLExtensions/Core
     - MJRefresh
   - MBProgressHUD (1.1.0)
-  - MJRefresh (3.1.15.7)
+  - MJRefresh (3.1.16)
+  - OpenSSL-XM (1.0.210.1)
   - SCLAlertView-Objective-C (1.1.6)
   - SVProgressHUD (2.2.5)
 
@@ -76,6 +78,7 @@ SPEC REPOS:
     - FMDB
     - MBProgressHUD
     - MJRefresh
+    - OpenSSL-XM
     - SCLAlertView-Objective-C
     - SVProgressHUD
 
@@ -88,12 +91,13 @@ SPEC CHECKSUMS:
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  HLExtensions: 40a0e7a8ee311cbbe1eb6d3b8ed8ad6816497ce5
+  HLExtensions: c10c1920ed0628d69831a22cf0d11d2b8b2f7654
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  OpenSSL-XM: f2d7697be2a4b01a2c62239fd577e4137cab4f3a
   SCLAlertView-Objective-C: 2bb9be204bffaf24762a0e33fe6ca9645819b3b7
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 9b2fc819da5c45d187f2810874e061d2cb056612
+PODFILE CHECKSUM: 4349e7bea901ab9dd14cec423a493894951ebfed
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.0.beta.3

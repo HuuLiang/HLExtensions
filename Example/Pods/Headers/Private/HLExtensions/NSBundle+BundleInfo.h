@@ -1,0 +1,1 @@
+../../../../../HLExtensions/Core/Foundation/NSBundle+BundleInfo.h

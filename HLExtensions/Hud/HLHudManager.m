@@ -160,5 +160,17 @@ HLSynthesizeSingletonMethod(sharedManager)
     }
 }
 
+- (void)hide:(void(^)(void))completion {
+    if (@available(iOS 8.0, *)) {
+        [SVProgressHUD dismissWithCompletion:^{
+            HLSafelyCallBlock(completion);
+        }];
+    } else {
+        self.progressHUD.completionBlock = ^{
+            HLSafelyCallBlock(completion);
+        };
+        [self.progressHUD hideAnimated:YES];
+    }
+}
 
 @end

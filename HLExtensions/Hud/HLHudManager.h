@@ -27,5 +27,7 @@ HLDeclareSingletonMethod(sharedManager)
 - (void)showInfo:(NSString *)info;
 
 - (void)hide;
+- (void)hide:(void(^)(void))completion;
+
 
 @end

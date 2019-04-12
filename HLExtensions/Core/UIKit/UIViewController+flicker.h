@@ -9,8 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^xxx)(void);
-
 @interface UIViewController (flicker)
 
 - (void)showInViewController:(UIViewController *)viewController;
@@ -18,7 +16,7 @@ typedef void(^xxx)(void);
 - (void)showInViewController:(UIViewController *)viewController inRect:(CGRect)rect backgroundColor:(UIColor *)backgroundColor animationBlock:(void (^ __nullable)(void))showAnimationBlock;
 
 - (void)hide;
-- (void)hideWithAnimationBlock:(void (^)(void))hideAnimationBlock;
+- (void)hideWithAnimationBlock:(nullable void (^)(void))hideAnimationBlock;
 
 @end
 

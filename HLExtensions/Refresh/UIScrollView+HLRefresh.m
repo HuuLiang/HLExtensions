@@ -65,4 +65,9 @@
     [self.mj_footer endRefreshingWithNoMoreData];
 }
 
+- (void)HL_pagingRefreshNormal {
+    self.mj_footer.state = MJRefreshStateIdle;
+}
+
+
 @end

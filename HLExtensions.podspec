@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'HLExtensions'
-    s.version          = '0.3.1'
+    s.version          = '0.3.2'
     s.summary          = 'Include common tools'
     
     s.description      = <<-DESC

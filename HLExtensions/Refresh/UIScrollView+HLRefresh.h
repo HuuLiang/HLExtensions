@@ -22,5 +22,6 @@
 - (void)HL_addPagingRefreshWithHandler:(void (^)(void))handler;
 - (void)HL_pagingRefreshNoMoreData;
 
+- (void)HL_pagingRefreshNormal;
 
 @end

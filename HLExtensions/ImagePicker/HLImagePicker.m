@@ -88,6 +88,7 @@ typedef void(^DidFinishTakeMediaCompletedBlock)(UIImage *image, NSDictionary *ed
     imagePickerController.delegate = self;
     imagePickerController.sourceType = sourceType;
     imagePickerController.allowsEditing = YES;
+    imagePickerController.navigationBar.translucent = NO;
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         imagePickerController.mediaTypes =  @[(NSString *)kUTTypeImage];
     }

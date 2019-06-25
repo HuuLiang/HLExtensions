@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'HLExtensions'
-    s.version          = '0.3.0'
+    s.version          = '0.3.1'
     s.summary          = 'Include common tools'
     
     s.description      = <<-DESC
@@ -50,6 +50,7 @@ Pod::Spec.new do |s|
         pick.source_files       = 'HLExtensions/ImagePicker/*.{h,m}'
         pick.dependency 'HLExtensions/Core'
         pick.dependency 'HLExtensions/Hud'
+        #pick.dependency 'RSKImageCropper'
         pick.frameworks = 'CoreServices'
     end
     

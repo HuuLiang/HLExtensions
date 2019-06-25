@@ -1,6 +1,6 @@
 {
   "name": "HLExtensions",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "summary": "Include common tools",
   "description": "HLExtensions use for other HuLiang's podspec，please indicate source when use!",
   "homepage": "https://github.com/HuuLiang/HLExtensions",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/HuuLiang/HLExtensions.git",
-    "tag": "0.3.0"
+    "tag": "0.3.1"
   },
   "platforms": {
     "ios": "8.0"

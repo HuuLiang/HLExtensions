@@ -45,7 +45,7 @@ typedef void(^DidFinishTakeMediaCompletedBlock)(UIImage *image, NSDictionary *ed
     @weakify(self);
     self.didFinishTakeMediaCompleted = ^(UIImage *image, NSDictionary *editingInfo) {
         @strongify(self);
-        UIImage *originalImage = editingInfo[UIImagePickerControllerOriginalImage];
+        UIImage *originalImage = editingInfo[UIImagePickerControllerEditedImage];
         if (originalImage) {
             picker(originalImage,[self getMd5ImageKeyNameWithImage:originalImage]);
         } else {
@@ -87,6 +87,7 @@ typedef void(^DidFinishTakeMediaCompletedBlock)(UIImage *image, NSDictionary *ed
     imagePickerController.editing = YES;
     imagePickerController.delegate = self;
     imagePickerController.sourceType = sourceType;
+    imagePickerController.allowsEditing = YES;
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         imagePickerController.mediaTypes =  @[(NSString *)kUTTypeImage];
     }

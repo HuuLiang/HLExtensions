@@ -6,7 +6,7 @@
 //
 
 #import "HLAlertManager.h"
-#import <SCLAlertView.h>
+#import <SCLAlertView_Objective_C/SCLAlertView.h>
 
 @implementation HLAlertManager
 
